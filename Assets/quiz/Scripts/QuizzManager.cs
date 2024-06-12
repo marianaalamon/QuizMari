@@ -16,7 +16,7 @@ public class QuizzManager : MonoBehaviour
     public TMP_Text textoPergunta;
     public TMP_Text[] textoResposta;
 
-    [Header("Objetos de Musica")]
+    [Header("Objeto de Musica")]
     public AudioSource caixaDeMusica;
     public AudioSource caixaDeEfeitos;
 
@@ -24,7 +24,7 @@ public class QuizzManager : MonoBehaviour
     public AudioClip musicaMenu;
     public AudioClip musicaJogo;
 
-    [Header("Arquivos de Efeito Sonoros")]
+    [Header("Arquivos de Efeitos Sonoros")]
     public AudioClip efeitoAcerto;
     public AudioClip efeitoErrado;
 
@@ -72,12 +72,11 @@ public class QuizzManager : MonoBehaviour
 
     //Método para checar as perguntas
     public void ChecarResposta(int numero)
-    {
-       
-       StartCoroutine(ValidarResposta(numero));
-
+    {       
+        StartCoroutine(ValidarResposta(numero));     
     }
 
+    //Co rotina para mostrar se acertou ou errou
     IEnumerator ValidarResposta(int numero)
     {
         if (numero == alternativaCorreta[perguntaAtual])
@@ -90,7 +89,6 @@ public class QuizzManager : MonoBehaviour
             imagemQuizz.color = Color.red;
             caixaDeEfeitos.PlayOneShot(efeitoErrado);
         }
-
         yield return new WaitForSeconds(2);
 
         imagemQuizz.color = Color.white;
@@ -104,12 +102,12 @@ public class QuizzManager : MonoBehaviour
             perguntaAtual = 0;
             caixaDeMusica.clip = musicaMenu;
             caixaDeMusica.Play();
-
         }
         else
         {
             ProximaPergunta(perguntaAtual);
         }
     }
+
 
 }
